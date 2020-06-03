@@ -1,0 +1,16 @@
+---
+- name: Install wordpress
+  hosts: web1
+  become: true
+
+  tasks:
+  - name: download
+    get_url:
+      url: http://wordpress.org/latest.tar.gz
+      dest: /usr/share/nginx/html/
+
+  - name: extract wordpress
+    unarchive:
+      src: /usr/share/nginx/html/wordpress-5.4.1.tar.gz
+      dest: /usr/share/nginx/html/
+      copy: no
